@@ -13,7 +13,8 @@ const getTodos = async () => {
   const { data, error } = await supabase
     .from("todos")
     .select()
-    .eq("author", session.user.id);
+    .eq("author", session.user.id)
+    .order("createdAt", { ascending: false });
 
   if (error) console.log(error.message);
   if (!error) {
